@@ -72,7 +72,7 @@ const SectionFilter = ({ selectedSection, onSelectSection }) => {
 const styles = StyleSheet.create({
   container: {
     paddingVertical: spacing.md,
-    paddingHorizontal: spacing.md,
+    // paddingHorizontal: spacing.md,
     backgroundColor: colors.white,
   },
   label: {
@@ -80,9 +80,11 @@ const styles = StyleSheet.create({
     fontWeight: typography.fontWeight.semibold,
     color: colors.textPrimary,
     marginBottom: spacing.sm,
+    paddingHorizontal: spacing.md,
   },
   scrollContent: {
     paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.md,
   },
   filterButton: {
     paddingHorizontal: spacing.md,

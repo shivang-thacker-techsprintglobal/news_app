@@ -219,6 +219,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     minHeight: moderateScale(44),
+    borderWidth: 1,
+    borderColor: colors.divider,
   },
   inputText: {
     flex: 1,

@@ -107,10 +107,6 @@ const HomeScreen = ({ navigation }) => {
   const renderHeader = () => (
     <View>
       {/* Section Filter */}
-      <SectionFilter
-        selectedSection={selectedSection}
-        onSelectSection={handleSectionChange}
-      />
 
       {/* Location and Keywords Filters */}
       <View style={styles.filtersContainer}>
@@ -178,40 +174,23 @@ const HomeScreen = ({ navigation }) => {
   };
 
   /**
-   * Render error state
+   * Render main content based on state
    */
-  if (error && articles.length === 0) {
-    return (
-      <SafeAreaView style={styles.container} edges={["top"]}>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>NYT News Feed</Text>
-        </View>
-        <ErrorView message={error.message} onRetry={refresh} />
-      </SafeAreaView>
-    );
-  }
+  const renderContent = () => {
+    // Error state
+    if (error && articles.length === 0) {
+      return <ErrorView message={error.message} onRetry={refresh} />;
+    }
 
-  // Show shimmer skeleton when loading (initial load or section change)
-  if (loading) {
-    return (
-      <SafeAreaView style={styles.container} edges={["top"]}>
-        {/* Header */}
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>NYT News Feed</Text>
-        </View>
+    // Loading state (initial load or section change)
+    if (loading) {
+      return (
         <View style={styles.skeletonContainer}>{renderLoadingSkeleton()}</View>
-      </SafeAreaView>
-    );
-  }
+      );
+    }
 
-  return (
-    <SafeAreaView style={styles.container} edges={["top"]}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>NYT News Feed</Text>
-      </View>
-
-      {/* Articles List */}
+    // Normal state - show articles list
+    return (
       <FlatList
         data={articles}
         renderItem={renderArticle}
@@ -230,6 +209,24 @@ const HomeScreen = ({ navigation }) => {
           />
         }
       />
+    );
+  };
+
+  return (
+    <SafeAreaView style={styles.container} edges={["top"]}>
+      {/* Static Header - Always visible */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>NYT News Feed</Text>
+      </View>
+
+      {/* Static Section Filter - Always visible */}
+      <SectionFilter
+        selectedSection={selectedSection}
+        onSelectSection={handleSectionChange}
+      />
+
+      {/* Dynamic Content - Changes based on state */}
+      {renderContent()}
     </SafeAreaView>
   );
 };
