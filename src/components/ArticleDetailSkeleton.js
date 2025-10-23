@@ -21,8 +21,19 @@ const ArticleDetailSkeleton = () => {
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
       <ScrollView style={styles.scrollView}>
-        {/* Image shimmer */}
-        <Shimmer width="100%" height={verticalScale(300)} borderRadius={0} />
+        {/* Image shimmer with back button */}
+        <View style={styles.imageContainer}>
+          <Shimmer width="100%" height={verticalScale(300)} borderRadius={0} />
+
+          {/* Back button shimmer */}
+          <View style={styles.backButtonShimmer}>
+            <Shimmer
+              width={moderateScale(40)}
+              height={moderateScale(40)}
+              borderRadius={moderateScale(20)}
+            />
+          </View>
+        </View>
 
         {/* Content */}
         <View style={styles.content}>
@@ -121,15 +132,6 @@ const ArticleDetailSkeleton = () => {
           />
         </View>
       </ScrollView>
-
-      {/* Back button shimmer */}
-      <View style={styles.backButtonContainer}>
-        <Shimmer
-          width="100%"
-          height={moderateScale(48)}
-          borderRadius={moderateScale(8)}
-        />
-      </View>
     </SafeAreaView>
   );
 };
@@ -141,6 +143,15 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
+  },
+  imageContainer: {
+    position: "relative",
+  },
+  backButtonShimmer: {
+    position: "absolute",
+    top: spacing.md,
+    left: spacing.md,
+    zIndex: 10,
   },
   content: {
     padding: spacing.lg,
@@ -168,10 +179,6 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: spacing.md,
-  },
-  backButtonContainer: {
-    marginHorizontal: spacing.lg,
-    marginVertical: spacing.lg,
   },
 });
 

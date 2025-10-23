@@ -181,8 +181,9 @@ const FilterDropdown = ({
                       {value === item && (
                         <Ionicons
                           name="checkmark"
-                          size={moderateScale(20)}
+                          size={moderateScale(25)}
                           color={colors.primary}
+                          weight="bold"
                         />
                       )}
                     </TouchableOpacity>
@@ -268,6 +269,7 @@ const styles = StyleSheet.create({
   },
   optionsList: {
     maxHeight: moderateScale(400),
+    paddingBottom: spacing.md,
   },
   emptyContainer: {
     padding: spacing.xl,
@@ -287,7 +289,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.divider,
   },
   selectedOption: {
-    backgroundColor: colors.primaryLight || "#E3F2FD",
+    backgroundColor: colors.transparent,
   },
   optionText: {
     flex: 1,
@@ -295,7 +297,7 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
   },
   selectedOptionText: {
-    fontWeight: typography.fontWeight.semibold,
+    fontWeight: typography.fontWeight.regular,
     color: colors.primary,
   },
   clearOption: {

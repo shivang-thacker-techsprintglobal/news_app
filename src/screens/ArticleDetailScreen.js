@@ -99,6 +99,20 @@ const ArticleDetailScreen = ({ route, navigation }) => {
                 cachePolicy="disk"
                 priority="high"
               />
+
+              {/* Back Button - Positioned over image */}
+              <TouchableOpacity
+                style={styles.backButtonOverlay}
+                onPress={handleBack}
+                activeOpacity={0.8}
+              >
+                <Ionicons
+                  name="arrow-back"
+                  size={moderateScale(24)}
+                  color={colors.white}
+                />
+              </TouchableOpacity>
+
               {article.caption && (
                 <View style={styles.captionContainer}>
                   <Text style={styles.caption}>Caption: {article.caption}</Text>
@@ -106,13 +120,28 @@ const ArticleDetailScreen = ({ route, navigation }) => {
               )}
             </>
           ) : (
-            <View style={styles.placeholderContainer}>
-              <Ionicons
-                name="image-outline"
-                size={moderateScale(80)}
-                color={colors.textTertiary}
-              />
-            </View>
+            <>
+              <View style={styles.placeholderContainer}>
+                <Ionicons
+                  name="image-outline"
+                  size={moderateScale(80)}
+                  color={colors.textTertiary}
+                />
+              </View>
+
+              {/* Back Button - Positioned over placeholder */}
+              <TouchableOpacity
+                style={styles.backButtonOverlay}
+                onPress={handleBack}
+                activeOpacity={0.8}
+              >
+                <Ionicons
+                  name="arrow-back"
+                  size={moderateScale(24)}
+                  color={colors.white}
+                />
+              </TouchableOpacity>
+            </>
           )}
         </View>
 
@@ -168,11 +197,6 @@ const ArticleDetailScreen = ({ route, navigation }) => {
           )}
         </View>
       </ScrollView>
-
-      {/* Back Button */}
-      <TouchableOpacity style={styles.backButton} onPress={handleBack}>
-        <Text style={styles.backButtonText}>BACK</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -199,6 +223,18 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
+  },
+  backButtonOverlay: {
+    position: "absolute",
+    top: spacing.md,
+    left: spacing.md,
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    borderRadius: moderateScale(20),
+    width: moderateScale(40),
+    height: moderateScale(40),
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 10,
   },
   captionContainer: {
     position: "absolute",
@@ -276,21 +312,6 @@ const styles = StyleSheet.create({
     fontWeight: typography.fontWeight.semibold,
     color: colors.white,
     marginRight: spacing.sm,
-  },
-  backButton: {
-    marginHorizontal: spacing.lg,
-    marginVertical: spacing.lg,
-    paddingVertical: spacing.md,
-    borderRadius: moderateScale(8),
-    borderWidth: 1,
-    borderColor: colors.border,
-    alignItems: "center",
-  },
-  backButtonText: {
-    fontSize: moderateScale(typography.fontSize.md),
-    fontWeight: typography.fontWeight.semibold,
-    color: colors.textSecondary,
-    letterSpacing: moderateScale(1),
   },
 });
 

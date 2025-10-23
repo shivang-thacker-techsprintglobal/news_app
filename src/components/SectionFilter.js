@@ -15,6 +15,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { colors, typography, spacing, moderateScale, scale } from "../theme";
 import { SECTION_LABELS, DEFAULT_SECTIONS } from "../api/config";
 
@@ -43,22 +44,39 @@ const SectionFilter = ({ selectedSection, onSelectSection }) => {
       >
         {DEFAULT_SECTIONS.map((section) => {
           const isSelected = selectedSection === section;
+
+          // Render button with gradient border if selected
+          if (isSelected) {
+            return (
+              <LinearGradient
+                key={section}
+                colors={["#667eea", "#667eea", "#ffffff"]}
+                start={{ x: 0, y: 1 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.gradientWrapper}
+              >
+                <TouchableOpacity
+                  style={styles.filterButtonSelected}
+                  onPress={() => onSelectSection(section)}
+                  activeOpacity={0.7}
+                >
+                  <Text style={styles.filterTextSelected}>
+                    {SECTION_LABELS[section] || section}
+                  </Text>
+                </TouchableOpacity>
+              </LinearGradient>
+            );
+          }
+
+          // Render normal button
           return (
             <TouchableOpacity
               key={section}
-              style={[
-                styles.filterButton,
-                isSelected && styles.filterButtonSelected,
-              ]}
+              style={styles.filterButton}
               onPress={() => onSelectSection(section)}
               activeOpacity={0.7}
             >
-              <Text
-                style={[
-                  styles.filterText,
-                  isSelected && styles.filterTextSelected,
-                ]}
-              >
+              <Text style={styles.filterText}>
                 {SECTION_LABELS[section] || section}
               </Text>
             </TouchableOpacity>
@@ -91,16 +109,26 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: moderateScale(8),
     backgroundColor: colors.filterUnselected,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: colors.filterBorder,
     marginRight: spacing.sm,
     minWidth: scale(80),
     alignItems: "center",
   },
+  gradientWrapper: {
+    borderRadius: moderateScale(8),
+    marginRight: spacing.sm,
+    padding: 1.5,
+
+    // This creates the gradient border effect (thinner border)
+  },
   filterButtonSelected: {
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    borderRadius: moderateScale(6), // Slightly smaller to show gradient border
     backgroundColor: colors.white,
-    borderColor: colors.filterSelected,
-    borderWidth: 2,
+    minWidth: scale(80),
+    alignItems: "center",
   },
   filterText: {
     fontSize: moderateScale(typography.fontSize.sm),
@@ -108,6 +136,7 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
   },
   filterTextSelected: {
+    fontSize: moderateScale(typography.fontSize.sm),
     color: colors.filterSelected,
     fontWeight: typography.fontWeight.bold,
   },
