@@ -6,11 +6,13 @@ A React Native mobile application for browsing New York Times top stories with o
 
 - **Browse Top Stories**: View articles from different NYT sections (World, Arts, Science, Sports, etc.)
 - **Section Filtering**: Switch between news sections with persistent selection
-- **Advanced Filters**: Filter articles by location and keywords
+- **Advanced Filters**: Filter articles by location and keywords using dropdown selectors
 - **Offline Capability**: Articles are cached locally for offline viewing
 - **Persistent State**: App remembers your last selected section
 - **Pull to Refresh**: Refresh articles with a simple pull-down gesture
 - **Article Details**: View full article details with images and metadata
+- **Image Caching**: Automatic disk caching for article images using expo-image
+- **Shimmer Loading Effect**: Modern skeleton screens with animated shimmer during data loading
 - **Responsive UI**: Clean, modern interface optimized for mobile devices
 
 ## 🏗️ Architecture
@@ -27,10 +29,13 @@ news_app/
 │   ├── assets/                 # Static assets (images, fonts, etc.)
 │   ├── components/             # Reusable UI components
 │   │   ├── ArticleCard.js     # Article list item component
+│   │   ├── ArticleCardSkeleton.js # Shimmer loading skeleton for article cards
+│   │   ├── ArticleDetailSkeleton.js # Shimmer loading skeleton for article details
 │   │   ├── SectionFilter.js   # Section selection component
-│   │   ├── FilterDropdown.js  # Filter input component
+│   │   ├── FilterDropdown.js  # Dropdown filter component
 │   │   ├── EmptyState.js      # Empty state component
 │   │   ├── ErrorView.js       # Error display component
+│   │   ├── Shimmer.js         # Base shimmer animation component
 │   │   └── index.js
 │   ├── hooks/                  # Custom React hooks
 │   │   ├── useArticles.js     # Hook for articles management
@@ -74,6 +79,7 @@ news_app/
 
 - **React Native**: Mobile app framework
 - **Expo**: Development platform and tools
+- **Expo Image**: Advanced image component with caching and performance optimizations
 - **Redux Toolkit**: State management with built-in best practices
 - **Redux Persist**: State persistence for offline capability
 - **React Navigation**: Navigation library
@@ -196,13 +202,14 @@ This app uses the New York Times Top Stories API v2.
 ### Home Screen
 
 - Section filter buttons (Home, World, Arts, Science, Sports, Opinion)
-- Location filter dropdown with suggestions
-- Keywords filter for searching article content
+- Location filter dropdown with predefined options from articles
+- Keywords filter dropdown with predefined options from articles
 - Article list with images, titles, authors, and publish times
 - Pull-to-refresh functionality
 - Cache status indicator
 - Empty states for no results
 - Error handling with retry option
+- Shimmer loading skeletons during data fetch
 
 ### Article Detail Screen
 
@@ -214,29 +221,85 @@ This app uses the New York Times Top Stories API v2.
 - Section tags
 - "Read Full Article" button (opens in browser)
 - Back button for navigation
+- Smooth shimmer transition on page load
+
+### Shimmer Loading Effect
+
+The app implements modern skeleton screens with animated shimmer effects for enhanced user experience:
+
+**Features:**
+
+- **Content-shaped placeholders**: Shimmer elements match the actual content layout
+- **Smooth animations**: Pulsing opacity effect (0.3 to 0.7) with 1-second cycles
+- **Consistent experience**: Shows during initial load, section changes, and screen transitions
+- **Professional appearance**: Modern loading pattern similar to Facebook, LinkedIn, and YouTube
+
+**Implementation:**
+
+- `Shimmer.js` - Base shimmer component with configurable dimensions and border radius
+- `ArticleCardSkeleton.js` - Skeleton for article list items (shows 5 cards)
+- `ArticleDetailSkeleton.js` - Skeleton for article detail screen
+- Uses React Native's Animated API for smooth performance
+- No spinners or loading indicators - only content-shaped shimmer effects
+
+**When Shimmer Appears:**
+
+- Initial app load
+- Switching between news sections (Arts, Science, Sports, etc.)
+- Navigating to article details
+- Any time new data is being fetched from the API
+
+### Image Caching
+
+The app implements intelligent image caching for optimal performance and offline capability:
+
+**Features:**
+
+- **Automatic disk caching**: Images are cached to disk using expo-image
+- **Memory management**: Efficient memory usage with automatic cleanup
+- **Smooth transitions**: 200ms fade-in effect for article cards, 300ms for detail screens
+- **Priority loading**: Detail screen images load with high priority
+- **Persistent cache**: Images remain available offline after first load
+
+**Implementation:**
+
+- Uses `expo-image` library for advanced caching capabilities
+- `cachePolicy="disk"` - Images persist across app restarts
+- Smooth fade-in transitions for better UX
+- Fallback placeholder for images that fail to load
+
+**Benefits:**
+
+- **Faster loading**: Cached images load instantly on subsequent views
+- **Reduced data usage**: Images are only downloaded once
+- **Offline availability**: View previously loaded articles with images offline
+- **Better performance**: Native image caching is more efficient than JS solutions
 
 ## 🔄 Offline Capability
 
 The app implements robust offline functionality:
 
-1. **Caching**: Articles are automatically cached when fetched
-2. **Persistence**: Redux state is persisted to AsyncStorage
-3. **Cache Duration**: 5 minutes by default (configurable)
-4. **Fallback**: If network fails, cached data is used automatically
-5. **Retry Logic**: API requests retry up to 3 times with exponential backoff
-6. **Section Memory**: App remembers last selected section across restarts
+1. **Article Caching**: Articles are automatically cached when fetched
+2. **Image Caching**: Article images are cached to disk and remain available offline
+3. **Persistence**: Redux state is persisted to AsyncStorage
+4. **Cache Duration**: 5 minutes by default (configurable)
+5. **Fallback**: If network fails, cached data and images are used automatically
+6. **Retry Logic**: API requests retry up to 3 times with exponential backoff
+7. **Section Memory**: App remembers last selected section across restarts
 
 ## 🎯 Assignment Requirements Checklist
 
 - ✅ Display article list with top stories
 - ✅ Allow user to open individual articles
 - ✅ Switch between different sections (science, travel, sports, etc.)
-- ✅ Filter articles by location
-- ✅ Filter articles by description keywords
+- ✅ Filter articles by location (dropdown with exact match)
+- ✅ Filter articles by description keywords (dropdown with exact match)
 - ✅ Remember selected section (Redux Persist)
 - ✅ Offline capability (caching, persistence, retry logic)
+- ✅ Image caching (disk caching with expo-image)
 - ✅ Modern React (hooks, functional components)
 - ✅ Styled components with theme system
+- ✅ Shimmer loading effects (modern skeleton screens)
 - ✅ Comprehensive documentation
 - ✅ Unit tests for utilities, Redux, and components
 

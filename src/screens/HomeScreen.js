@@ -191,8 +191,8 @@ const HomeScreen = ({ navigation }) => {
     );
   }
 
-  // Show shimmer skeleton during initial load
-  if (loading && articles.length === 0) {
+  // Show shimmer skeleton when loading (initial load or section change)
+  if (loading) {
     return (
       <SafeAreaView style={styles.container} edges={["top"]}>
         {/* Header */}
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
   },
   skeletonContainer: {
     flex: 1,
-    paddingTop: spacing.md,
+    // paddingTop: spacing.md,
   },
   filtersContainer: {
     backgroundColor: colors.background,

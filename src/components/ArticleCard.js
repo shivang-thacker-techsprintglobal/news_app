@@ -1,53 +1,60 @@
 /**
  * ArticleCard Component
- * 
+ *
  * Displays a single article in a card format with:
  * - Article image (or placeholder)
  * - Title
  * - Author
  * - Published time
- * 
+ *
  * @module components/ArticleCard
  */
 
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { colors, typography, spacing } from '../theme';
-import { formatTimeAgo } from '../utils';
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Image } from "expo-image";
+import { Ionicons } from "@expo/vector-icons";
+import { colors, typography, spacing } from "../theme";
+import { formatTimeAgo } from "../utils";
 
 /**
  * ArticleCard Component
- * 
+ *
  * @param {Object} props - Component props
  * @param {Object} props.article - Article object
  * @param {Function} props.onPress - Function to call when card is pressed
  * @returns {JSX.Element} ArticleCard component
- * 
+ *
  * @example
- * <ArticleCard 
- *   article={article} 
- *   onPress={() => navigation.navigate('ArticleDetail', { article })} 
+ * <ArticleCard
+ *   article={article}
+ *   onPress={() => navigation.navigate('ArticleDetail', { article })}
  * />
  */
 const ArticleCard = ({ article, onPress }) => {
   return (
-    <TouchableOpacity 
-      style={styles.container} 
+    <TouchableOpacity
+      style={styles.container}
       onPress={onPress}
       activeOpacity={0.7}
     >
       {/* Article Image */}
       <View style={styles.imageContainer}>
         {article.imageUrl ? (
-          <Image 
-            source={{ uri: article.imageUrl }} 
+          <Image
+            source={{ uri: article.imageUrl }}
             style={styles.image}
-            resizeMode="cover"
+            contentFit="cover"
+            transition={200}
+            cachePolicy="disk"
           />
         ) : (
           <View style={styles.placeholder}>
-            <Ionicons name="image-outline" size={40} color={colors.textTertiary} />
+            <Ionicons
+              name="image-outline"
+              size={40}
+              color={colors.textTertiary}
+            />
           </View>
         )}
       </View>
@@ -61,7 +68,7 @@ const ArticleCard = ({ article, onPress }) => {
 
         {/* Author */}
         <Text style={styles.author} numberOfLines={1}>
-          {article.byline || 'Unknown Author'}
+          {article.byline || "Unknown Author"}
         </Text>
 
         {/* Published Time */}
@@ -75,7 +82,7 @@ const ArticleCard = ({ article, onPress }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: "row",
     backgroundColor: colors.cardBackground,
     borderRadius: 12,
     marginHorizontal: spacing.md,
@@ -91,23 +98,23 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 8,
-    overflow: 'hidden',
+    overflow: "hidden",
     marginRight: spacing.md,
   },
   image: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   placeholder: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
     backgroundColor: colors.placeholderBackground,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   content: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   title: {
     fontSize: typography.fontSize.md,
@@ -127,4 +134,3 @@ const styles = StyleSheet.create({
 });
 
 export default ArticleCard;
-

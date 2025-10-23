@@ -16,10 +16,10 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  Image,
   TouchableOpacity,
   Linking,
 } from "react-native";
+import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -88,7 +88,10 @@ const ArticleDetailScreen = ({ route, navigation }) => {
               <Image
                 source={{ uri: article.imageUrl }}
                 style={styles.image}
-                resizeMode="cover"
+                contentFit="cover"
+                transition={300}
+                cachePolicy="disk"
+                priority="high"
               />
               {article.caption && (
                 <View style={styles.captionContainer}>
