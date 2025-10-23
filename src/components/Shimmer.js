@@ -13,6 +13,8 @@ import { colors, moderateScale } from "../theme";
 /**
  * Shimmer Component
  *
+ * Creates a sliding wave shimmer effect for loading states
+ *
  * @param {Object} props - Component props
  * @param {number} props.width - Width of shimmer element
  * @param {number} props.height - Height of shimmer element
@@ -21,38 +23,31 @@ import { colors, moderateScale } from "../theme";
  * @returns {JSX.Element} Shimmer component
  */
 const Shimmer = ({ width = "100%", height = 20, borderRadius = 4, style }) => {
-  const animatedValue = useRef(new Animated.Value(0)).current;
+  const shimmerTranslate = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.loop(
-      Animated.sequence([
-        Animated.timing(animatedValue, {
-          toValue: 1,
-          duration: 1000,
-          useNativeDriver: true,
-        }),
-        Animated.timing(animatedValue, {
-          toValue: 0,
-          duration: 1000,
-          useNativeDriver: true,
-        }),
-      ])
+      Animated.timing(shimmerTranslate, {
+        toValue: 1,
+        duration: 1500,
+        useNativeDriver: true,
+      })
     ).start();
-  }, [animatedValue]);
+  }, [shimmerTranslate]);
 
-  const opacity = animatedValue.interpolate({
+  const translateX = shimmerTranslate.interpolate({
     inputRange: [0, 1],
-    outputRange: [0.3, 0.7],
+    outputRange: [-400, 400],
   });
 
   return (
     <View style={[styles.container, { width, height, borderRadius }, style]}>
+      {/* Shimmer wave effect - creates a sliding highlight */}
       <Animated.View
         style={[
-          styles.shimmer,
+          styles.shimmerWave,
           {
-            opacity,
-            borderRadius,
+            transform: [{ translateX }, { rotate: "-10deg" }],
           },
         ]}
       />
@@ -64,11 +59,15 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.placeholderBackground,
     overflow: "hidden",
+    position: "relative",
   },
-  shimmer: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: colors.divider,
+  shimmerWave: {
+    width: 200,
+    height: "200%",
+    position: "absolute",
+    top: "-50%",
+    left: 0,
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
   },
 });
 
