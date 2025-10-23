@@ -11,7 +11,14 @@
  */
 
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, FlatList, RefreshControl } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  RefreshControl,
+  Platform,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -213,7 +220,10 @@ const HomeScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
+    <SafeAreaView
+      style={styles.container}
+      edges={Platform.OS === "android" ? ["top", "bottom"] : ["top"]}
+    >
       {/* Static Header - Always visible */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>NYT News Feed</Text>

@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Shimmer from "./Shimmer";
 import { colors, spacing, moderateScale, verticalScale, scale } from "../theme";
@@ -19,7 +19,10 @@ import { colors, spacing, moderateScale, verticalScale, scale } from "../theme";
  */
 const ArticleDetailSkeleton = () => {
   return (
-    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
+    <SafeAreaView
+      style={styles.container}
+      edges={Platform.OS === "android" ? ["top", "bottom"] : ["top"]}
+    >
       <ScrollView style={styles.scrollView}>
         {/* Image shimmer with back button */}
         <View style={styles.imageContainer}>

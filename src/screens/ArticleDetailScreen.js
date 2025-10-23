@@ -18,6 +18,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Linking,
+  Platform,
 } from "react-native";
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -85,7 +86,10 @@ const ArticleDetailScreen = ({ route, navigation }) => {
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
+    <SafeAreaView
+      style={styles.container}
+      edges={Platform.OS === "android" ? ["top", "bottom"] : ["top"]}
+    >
       <ScrollView style={styles.scrollView}>
         {/* Article Image */}
         <View style={styles.imageContainer}>
