@@ -23,7 +23,13 @@ import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 
-import { colors, typography, spacing } from "../theme";
+import {
+  colors,
+  typography,
+  spacing,
+  moderateScale,
+  verticalScale,
+} from "../theme";
 import { formatTimeAgo } from "../utils";
 import { ArticleDetailSkeleton } from "../components";
 
@@ -103,7 +109,7 @@ const ArticleDetailScreen = ({ route, navigation }) => {
             <View style={styles.placeholderContainer}>
               <Ionicons
                 name="image-outline"
-                size={80}
+                size={moderateScale(80)}
                 color={colors.textTertiary}
               />
             </View>
@@ -153,7 +159,11 @@ const ArticleDetailScreen = ({ route, navigation }) => {
               onPress={handleReadFullArticle}
             >
               <Text style={styles.readButtonText}>Read Full Article</Text>
-              <Ionicons name="open-outline" size={20} color={colors.white} />
+              <Ionicons
+                name="open-outline"
+                size={moderateScale(20)}
+                color={colors.white}
+              />
             </TouchableOpacity>
           )}
         </View>
@@ -177,7 +187,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: "100%",
-    height: 300,
+    height: verticalScale(300),
     backgroundColor: colors.placeholderBackground,
   },
   image: {
@@ -200,7 +210,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
   },
   caption: {
-    fontSize: typography.fontSize.xs,
+    fontSize: moderateScale(typography.fontSize.xs),
     fontStyle: "italic",
     color: colors.white,
   },
@@ -209,28 +219,28 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   title: {
-    fontSize: typography.fontSize.xxl,
+    fontSize: moderateScale(typography.fontSize.xxl),
     fontWeight: typography.fontWeight.bold,
     color: colors.textPrimary,
     marginBottom: spacing.md,
-    lineHeight: 32,
+    lineHeight: moderateScale(32),
   },
   metadata: {
     marginBottom: spacing.lg,
   },
   author: {
-    fontSize: typography.fontSize.md,
+    fontSize: moderateScale(typography.fontSize.md),
     color: colors.textSecondary,
     marginBottom: spacing.xs,
   },
   time: {
-    fontSize: typography.fontSize.sm,
+    fontSize: moderateScale(typography.fontSize.sm),
     color: colors.textTertiary,
   },
   abstract: {
-    fontSize: typography.fontSize.md,
+    fontSize: moderateScale(typography.fontSize.md),
     color: colors.textPrimary,
-    lineHeight: 24,
+    lineHeight: moderateScale(24),
     marginBottom: spacing.lg,
   },
   sectionInfo: {
@@ -242,12 +252,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.xs,
-    borderRadius: 16,
+    borderRadius: moderateScale(16),
     marginRight: spacing.sm,
     marginBottom: spacing.sm,
   },
   tagText: {
-    fontSize: typography.fontSize.xs,
+    fontSize: moderateScale(typography.fontSize.xs),
     fontWeight: typography.fontWeight.semibold,
     color: colors.white,
     textTransform: "uppercase",
@@ -258,11 +268,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: colors.primary,
     paddingVertical: spacing.md,
-    borderRadius: 8,
+    borderRadius: moderateScale(8),
     marginTop: spacing.md,
   },
   readButtonText: {
-    fontSize: typography.fontSize.md,
+    fontSize: moderateScale(typography.fontSize.md),
     fontWeight: typography.fontWeight.semibold,
     color: colors.white,
     marginRight: spacing.sm,
@@ -271,16 +281,16 @@ const styles = StyleSheet.create({
     marginHorizontal: spacing.lg,
     marginVertical: spacing.lg,
     paddingVertical: spacing.md,
-    borderRadius: 8,
+    borderRadius: moderateScale(8),
     borderWidth: 1,
     borderColor: colors.border,
     alignItems: "center",
   },
   backButtonText: {
-    fontSize: typography.fontSize.md,
+    fontSize: moderateScale(typography.fontSize.md),
     fontWeight: typography.fontWeight.semibold,
     color: colors.textSecondary,
-    letterSpacing: 1,
+    letterSpacing: moderateScale(1),
   },
 });
 

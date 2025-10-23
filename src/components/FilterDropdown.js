@@ -18,7 +18,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { colors, typography, spacing } from "../theme";
+import { colors, typography, spacing, moderateScale } from "../theme";
 
 /**
  * FilterDropdown Component
@@ -99,14 +99,14 @@ const FilterDropdown = ({
             >
               <Ionicons
                 name="close-circle"
-                size={20}
+                size={moderateScale(20)}
                 color={colors.textSecondary}
               />
             </TouchableOpacity>
           ) : (
             <Ionicons
               name="chevron-down"
-              size={20}
+              size={moderateScale(20)}
               color={colors.textSecondary}
             />
           )}
@@ -129,7 +129,11 @@ const FilterDropdown = ({
                 onPress={() => setShowModal(false)}
                 style={styles.closeButton}
               >
-                <Ionicons name="close" size={24} color={colors.textPrimary} />
+                <Ionicons
+                  name="close"
+                  size={moderateScale(24)}
+                  color={colors.textPrimary}
+                />
               </TouchableOpacity>
             </View>
 
@@ -150,7 +154,7 @@ const FilterDropdown = ({
                       <Text style={styles.clearOptionText}>Clear Filter</Text>
                       <Ionicons
                         name="close-circle"
-                        size={20}
+                        size={moderateScale(20)}
                         color={colors.error}
                       />
                     </TouchableOpacity>
@@ -177,7 +181,7 @@ const FilterDropdown = ({
                       {value === item && (
                         <Ionicons
                           name="checkmark"
-                          size={20}
+                          size={moderateScale(20)}
                           color={colors.primary}
                         />
                       )}
@@ -201,24 +205,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
   },
   label: {
-    fontSize: typography.fontSize.xs,
+    fontSize: moderateScale(typography.fontSize.xs),
     fontWeight: typography.fontWeight.semibold,
     color: colors.textSecondary,
     marginBottom: spacing.xs,
-    letterSpacing: 0.5,
+    letterSpacing: moderateScale(0.5),
   },
   inputWrapper: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: colors.inputBackground,
-    borderRadius: 8,
+    borderRadius: moderateScale(8),
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
-    minHeight: 44,
+    minHeight: moderateScale(44),
   },
   inputText: {
     flex: 1,
-    fontSize: typography.fontSize.md,
+    fontSize: moderateScale(typography.fontSize.md),
     color: colors.textPrimary,
   },
   placeholder: {
@@ -234,13 +238,13 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: colors.white,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopLeftRadius: moderateScale(20),
+    borderTopRightRadius: moderateScale(20),
     maxHeight: "70%",
     shadowColor: colors.black,
-    shadowOffset: { width: 0, height: -4 },
+    shadowOffset: { width: 0, height: moderateScale(-4) },
     shadowOpacity: 0.2,
-    shadowRadius: 8,
+    shadowRadius: moderateScale(8),
     elevation: 10,
   },
   modalHeader: {
@@ -253,7 +257,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.divider,
   },
   modalTitle: {
-    fontSize: typography.fontSize.lg,
+    fontSize: moderateScale(typography.fontSize.lg),
     fontWeight: typography.fontWeight.semibold,
     color: colors.textPrimary,
   },
@@ -261,14 +265,14 @@ const styles = StyleSheet.create({
     padding: spacing.xs,
   },
   optionsList: {
-    maxHeight: 400,
+    maxHeight: moderateScale(400),
   },
   emptyContainer: {
     padding: spacing.xl,
     alignItems: "center",
   },
   emptyText: {
-    fontSize: typography.fontSize.md,
+    fontSize: moderateScale(typography.fontSize.md),
     color: colors.textSecondary,
   },
   optionItem: {
@@ -285,7 +289,7 @@ const styles = StyleSheet.create({
   },
   optionText: {
     flex: 1,
-    fontSize: typography.fontSize.md,
+    fontSize: moderateScale(typography.fontSize.md),
     color: colors.textPrimary,
   },
   selectedOptionText: {
@@ -297,7 +301,7 @@ const styles = StyleSheet.create({
   },
   clearOptionText: {
     flex: 1,
-    fontSize: typography.fontSize.md,
+    fontSize: moderateScale(typography.fontSize.md),
     color: colors.error,
     fontWeight: typography.fontWeight.semibold,
   },

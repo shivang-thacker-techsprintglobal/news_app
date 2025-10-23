@@ -9,7 +9,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import Shimmer from "./Shimmer";
-import { colors, spacing } from "../theme";
+import { colors, spacing, moderateScale, scale } from "../theme";
 
 /**
  * ArticleCardSkeleton Component
@@ -20,51 +20,56 @@ const ArticleCardSkeleton = () => {
   return (
     <View style={styles.card}>
       {/* Image shimmer */}
-      <Shimmer width={120} height={120} borderRadius={8} style={styles.image} />
+      <Shimmer
+        width={scale(120)}
+        height={scale(120)}
+        borderRadius={moderateScale(8)}
+        style={styles.image}
+      />
 
       {/* Content shimmer */}
       <View style={styles.content}>
         {/* Section tag shimmer */}
         <Shimmer
-          width={80}
-          height={20}
-          borderRadius={12}
+          width={scale(80)}
+          height={moderateScale(20)}
+          borderRadius={moderateScale(12)}
           style={styles.section}
         />
 
         {/* Title shimmers */}
         <Shimmer
           width="100%"
-          height={16}
-          borderRadius={4}
+          height={moderateScale(16)}
+          borderRadius={moderateScale(4)}
           style={styles.titleLine}
         />
         <Shimmer
           width="90%"
-          height={16}
-          borderRadius={4}
+          height={moderateScale(16)}
+          borderRadius={moderateScale(4)}
           style={styles.titleLine}
         />
 
         {/* Abstract shimmers */}
         <Shimmer
           width="100%"
-          height={14}
-          borderRadius={4}
+          height={moderateScale(14)}
+          borderRadius={moderateScale(4)}
           style={styles.abstractLine}
         />
         <Shimmer
           width="85%"
-          height={14}
-          borderRadius={4}
+          height={moderateScale(14)}
+          borderRadius={moderateScale(4)}
           style={styles.abstractLine}
         />
 
         {/* Metadata shimmer */}
         <Shimmer
-          width={150}
-          height={12}
-          borderRadius={4}
+          width={scale(150)}
+          height={moderateScale(12)}
+          borderRadius={moderateScale(4)}
           style={styles.metadata}
         />
       </View>
@@ -76,14 +81,14 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
     backgroundColor: colors.cardBackground,
-    borderRadius: 12,
+    borderRadius: moderateScale(12),
     padding: spacing.md,
     marginHorizontal: spacing.md,
     marginBottom: spacing.md,
     shadowColor: colors.black,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: moderateScale(2) },
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: moderateScale(4),
     elevation: 3,
   },
   image: {

@@ -10,7 +10,7 @@ import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Shimmer from "./Shimmer";
-import { colors, spacing } from "../theme";
+import { colors, spacing, moderateScale, verticalScale, scale } from "../theme";
 
 /**
  * ArticleDetailSkeleton Component
@@ -22,43 +22,43 @@ const ArticleDetailSkeleton = () => {
     <SafeAreaView style={styles.container} edges={["top"]}>
       <ScrollView style={styles.scrollView}>
         {/* Image shimmer */}
-        <Shimmer width="100%" height={300} borderRadius={0} />
+        <Shimmer width="100%" height={verticalScale(300)} borderRadius={0} />
 
         {/* Content */}
         <View style={styles.content}>
           {/* Title shimmers */}
           <Shimmer
             width="100%"
-            height={24}
-            borderRadius={4}
+            height={moderateScale(24)}
+            borderRadius={moderateScale(4)}
             style={styles.titleLine}
           />
           <Shimmer
             width="90%"
-            height={24}
-            borderRadius={4}
+            height={moderateScale(24)}
+            borderRadius={moderateScale(4)}
             style={styles.titleLine}
           />
           <Shimmer
             width="60%"
-            height={24}
-            borderRadius={4}
+            height={moderateScale(24)}
+            borderRadius={moderateScale(4)}
             style={styles.titleLine}
           />
 
           {/* Author shimmer */}
           <Shimmer
-            width={180}
-            height={16}
-            borderRadius={4}
+            width={scale(180)}
+            height={moderateScale(16)}
+            borderRadius={moderateScale(4)}
             style={styles.metadata}
           />
 
           {/* Time shimmer */}
           <Shimmer
-            width={120}
-            height={14}
-            borderRadius={4}
+            width={scale(120)}
+            height={moderateScale(14)}
+            borderRadius={moderateScale(4)}
             style={styles.metadata}
           />
 
@@ -66,32 +66,32 @@ const ArticleDetailSkeleton = () => {
           <View style={styles.abstractContainer}>
             <Shimmer
               width="100%"
-              height={16}
-              borderRadius={4}
+              height={moderateScale(16)}
+              borderRadius={moderateScale(4)}
               style={styles.abstractLine}
             />
             <Shimmer
               width="100%"
-              height={16}
-              borderRadius={4}
+              height={moderateScale(16)}
+              borderRadius={moderateScale(4)}
               style={styles.abstractLine}
             />
             <Shimmer
               width="100%"
-              height={16}
-              borderRadius={4}
+              height={moderateScale(16)}
+              borderRadius={moderateScale(4)}
               style={styles.abstractLine}
             />
             <Shimmer
               width="95%"
-              height={16}
-              borderRadius={4}
+              height={moderateScale(16)}
+              borderRadius={moderateScale(4)}
               style={styles.abstractLine}
             />
             <Shimmer
               width="85%"
-              height={16}
-              borderRadius={4}
+              height={moderateScale(16)}
+              borderRadius={moderateScale(4)}
               style={styles.abstractLine}
             />
           </View>
@@ -99,15 +99,15 @@ const ArticleDetailSkeleton = () => {
           {/* Tags shimmer */}
           <View style={styles.tagsContainer}>
             <Shimmer
-              width={80}
-              height={28}
-              borderRadius={14}
+              width={scale(80)}
+              height={moderateScale(28)}
+              borderRadius={moderateScale(14)}
               style={styles.tag}
             />
             <Shimmer
-              width={100}
-              height={28}
-              borderRadius={14}
+              width={scale(100)}
+              height={moderateScale(28)}
+              borderRadius={moderateScale(14)}
               style={styles.tag}
             />
           </View>
@@ -115,8 +115,8 @@ const ArticleDetailSkeleton = () => {
           {/* Button shimmer */}
           <Shimmer
             width="100%"
-            height={48}
-            borderRadius={8}
+            height={moderateScale(48)}
+            borderRadius={moderateScale(8)}
             style={styles.button}
           />
         </View>
@@ -124,7 +124,11 @@ const ArticleDetailSkeleton = () => {
 
       {/* Back button shimmer */}
       <View style={styles.backButtonContainer}>
-        <Shimmer width="100%" height={48} borderRadius={8} />
+        <Shimmer
+          width="100%"
+          height={moderateScale(48)}
+          borderRadius={moderateScale(8)}
+        />
       </View>
     </SafeAreaView>
   );

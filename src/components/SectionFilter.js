@@ -1,37 +1,43 @@
 /**
  * SectionFilter Component
- * 
+ *
  * Displays a horizontal list of section filter buttons
  * Allows users to switch between different news sections
- * 
+ *
  * @module components/SectionFilter
  */
 
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { colors, typography, spacing } from '../theme';
-import { SECTION_LABELS, DEFAULT_SECTIONS } from '../api/config';
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
+import { colors, typography, spacing, moderateScale, scale } from "../theme";
+import { SECTION_LABELS, DEFAULT_SECTIONS } from "../api/config";
 
 /**
  * SectionFilter Component
- * 
+ *
  * @param {Object} props - Component props
  * @param {string} props.selectedSection - Currently selected section
  * @param {Function} props.onSelectSection - Function to call when section is selected
  * @returns {JSX.Element} SectionFilter component
- * 
+ *
  * @example
- * <SectionFilter 
- *   selectedSection="world" 
- *   onSelectSection={(section) => setSection(section)} 
+ * <SectionFilter
+ *   selectedSection="world"
+ *   onSelectSection={(section) => setSection(section)}
  * />
  */
 const SectionFilter = ({ selectedSection, onSelectSection }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Section</Text>
-      <ScrollView 
-        horizontal 
+      <ScrollView
+        horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
@@ -70,7 +76,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   label: {
-    fontSize: typography.fontSize.md,
+    fontSize: moderateScale(typography.fontSize.md),
     fontWeight: typography.fontWeight.semibold,
     color: colors.textPrimary,
     marginBottom: spacing.sm,
@@ -81,13 +87,13 @@ const styles = StyleSheet.create({
   filterButton: {
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
-    borderRadius: 8,
+    borderRadius: moderateScale(8),
     backgroundColor: colors.filterUnselected,
     borderWidth: 1,
     borderColor: colors.filterBorder,
     marginRight: spacing.sm,
-    minWidth: 80,
-    alignItems: 'center',
+    minWidth: scale(80),
+    alignItems: "center",
   },
   filterButtonSelected: {
     backgroundColor: colors.white,
@@ -95,7 +101,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   filterText: {
-    fontSize: typography.fontSize.sm,
+    fontSize: moderateScale(typography.fontSize.sm),
     fontWeight: typography.fontWeight.medium,
     color: colors.textSecondary,
   },
@@ -106,4 +112,3 @@ const styles = StyleSheet.create({
 });
 
 export default SectionFilter;
-

@@ -14,7 +14,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
-import { colors, typography, spacing } from "../theme";
+import { colors, typography, spacing, moderateScale, scale } from "../theme";
 import { formatTimeAgo } from "../utils";
 
 /**
@@ -52,7 +52,7 @@ const ArticleCard = ({ article, onPress }) => {
           <View style={styles.placeholder}>
             <Ionicons
               name="image-outline"
-              size={40}
+              size={moderateScale(40)}
               color={colors.textTertiary}
             />
           </View>
@@ -84,20 +84,20 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     backgroundColor: colors.cardBackground,
-    borderRadius: 12,
+    borderRadius: moderateScale(12),
     marginHorizontal: spacing.md,
     marginVertical: spacing.sm,
     padding: spacing.md,
     shadowColor: colors.black,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: moderateScale(2) },
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: moderateScale(4),
     elevation: 3,
   },
   imageContainer: {
-    width: 100,
-    height: 100,
-    borderRadius: 8,
+    width: scale(100),
+    height: scale(100),
+    borderRadius: moderateScale(8),
     overflow: "hidden",
     marginRight: spacing.md,
   },
@@ -117,18 +117,18 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   title: {
-    fontSize: typography.fontSize.md,
+    fontSize: moderateScale(typography.fontSize.md),
     fontWeight: typography.fontWeight.bold,
     color: colors.textPrimary,
     marginBottom: spacing.xs,
   },
   author: {
-    fontSize: typography.fontSize.sm,
+    fontSize: moderateScale(typography.fontSize.sm),
     color: colors.textSecondary,
     marginBottom: spacing.xs,
   },
   time: {
-    fontSize: typography.fontSize.xs,
+    fontSize: moderateScale(typography.fontSize.xs),
     color: colors.textTertiary,
   },
 });

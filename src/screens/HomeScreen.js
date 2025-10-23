@@ -31,7 +31,7 @@ import {
   selectSelectedSection,
   selectFilters,
 } from "../redux";
-import { colors, spacing } from "../theme";
+import { colors, spacing, moderateScale } from "../theme";
 import { getUniqueLocations, getUniqueKeywords } from "../utils";
 
 /**
@@ -244,13 +244,13 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.md,
     shadowColor: colors.black,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: moderateScale(2) },
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: moderateScale(4),
     elevation: 3,
   },
   headerTitle: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     fontWeight: "700",
     color: colors.white,
   },
@@ -268,10 +268,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     marginHorizontal: spacing.md,
     marginBottom: spacing.sm,
-    borderRadius: 8,
+    borderRadius: moderateScale(8),
   },
   cacheText: {
-    fontSize: 12,
+    fontSize: moderateScale(12),
     color: colors.white,
     textAlign: "center",
   },
