@@ -213,7 +213,7 @@ const HomeScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container} edges={["top"]}>
+    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
       {/* Static Header - Always visible */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>NYT News Feed</Text>

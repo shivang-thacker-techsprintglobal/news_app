@@ -19,7 +19,7 @@ import { colors, spacing, moderateScale, verticalScale, scale } from "../theme";
  */
 const ArticleDetailSkeleton = () => {
   return (
-    <SafeAreaView style={styles.container} edges={["top"]}>
+    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
       <ScrollView style={styles.scrollView}>
         {/* Image shimmer with back button */}
         <View style={styles.imageContainer}>

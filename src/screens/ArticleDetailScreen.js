@@ -85,7 +85,7 @@ const ArticleDetailScreen = ({ route, navigation }) => {
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={["top"]}>
+    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
       <ScrollView style={styles.scrollView}>
         {/* Article Image */}
         <View style={styles.imageContainer}>
