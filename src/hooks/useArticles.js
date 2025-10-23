@@ -81,10 +81,8 @@ export const useArticles = (section, filters = {}) => {
     try {
       await dispatch(fetchArticles(section)).unwrap();
     } catch (err) {
-      // If fetch fails and we have cached data, use it
-      if (cachedArticles.length > 0) {
-        dispatch(setCurrentArticlesFromCache({ section }));
-      }
+      // If fetch fails, use cached data (or empty array if no cache exists)
+      dispatch(setCurrentArticlesFromCache({ section }));
     }
   };
 

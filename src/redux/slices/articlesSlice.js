@@ -73,9 +73,8 @@ const articlesSlice = createSlice({
      */
     setCurrentArticlesFromCache: (state, action) => {
       const { section } = action.payload;
-      if (state.articlesBySection[section]) {
-        state.currentArticles = state.articlesBySection[section];
-      }
+      // Set to cached articles if they exist, otherwise set to empty array
+      state.currentArticles = state.articlesBySection[section] || [];
     },
 
     /**
