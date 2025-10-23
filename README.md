@@ -125,10 +125,47 @@ This project includes a `.env` file with a working NYT API key for client testin
 
 **⚠️ IMPORTANT NOTE**: For this assignment, the `.env` file is intentionally committed to the repository for easy client testing. In production applications, **never commit API keys or `.env` files** to version control.
 
-**If you want to use your own API key:**
+**How to Generate Your NYT API Key**
 
-1. Get your API key from [NYT Developer Portal](https://developer.nytimes.com/get-started)
-2. Update the `.env` file in the project root:
+Follow these steps to create and obtain your New York Times API key:
+
+#### 1. Create an Account
+
+If you don't already have an account, create one at the [NYT Developer Portal](https://developer.nytimes.com):
+
+- Click **Sign In**
+- Click **Create account** and follow prompts to register
+
+#### 2. Sign In
+
+To sign in to the portal:
+
+- Click **Sign In**
+- Enter your email address and password
+- Click **Sign In**
+
+#### 3. Register Your App
+
+To register an app:
+
+- Select **My Apps** from the user drop-down menu
+- Click **+ New App** to create a new app
+- Enter a name and description for the app in the New App dialog
+- Click **Create**
+- Click the **APIs** tab
+- Click the access toggle to enable or disable access to an API product from the app
+  - **Make sure to enable the "Top Stories API"**
+
+#### 4. Access the API Key
+
+- Select **My Apps** from the user drop-down menu
+- Click the app in the list
+- View the API key on the **App Details** tab
+- Confirm that the status of the API key is **Approved**
+
+#### 5. Update Your .env File
+
+Once you have your API key, update the `.env` file in the project root:
 
 ```env
 # .env file
@@ -137,12 +174,16 @@ API_BASE_URL=https://api.nytimes.com/svc/topstories/v2
 API_TIMEOUT=10000
 ```
 
-3. Restart the Metro bundler for changes to take effect:
+#### 6. Restart the Metro Bundler
+
+For changes to take effect:
 
 ```bash
 # Clear cache and restart
 npx expo start --clear
 ```
+
+**Note:** You can explore different APIs on the [APIs page](https://developer.nytimes.com/apis) which has information on the different APIs available. The documentation for each API includes an interactive reference for trying out the API.
 
 **Environment Variables Configuration:**
 
@@ -217,11 +258,7 @@ This app uses the New York Times Top Stories API v2.
 
 **Available Sections**:
 
-- home, world, arts, science, sports, opinion
-- technology, business, politics, health, food
-- travel, movies, theater, books, and more
-
-**Rate Limits**: 5,000 requests per day (check NYT API documentation for current limits)
+- home, world, arts, science, sports, opinion.
 
 ## 🎨 UI/UX Features
 
@@ -313,7 +350,7 @@ The app implements robust offline functionality:
 6. **Retry Logic**: API requests retry up to 3 times with exponential backoff
 7. **Section Memory**: App remembers last selected section across restarts
 
-## 🎯 Assignment Requirements Checklist
+## 🎯 Requirements Checklist
 
 - ✅ Display article list with top stories
 - ✅ Allow user to open individual articles
