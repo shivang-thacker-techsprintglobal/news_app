@@ -358,7 +358,7 @@ The app implements robust offline functionality:
 - ✅ Filter articles by location (dropdown with exact match)
 - ✅ Filter articles by description keywords (dropdown with exact match)
 - ✅ Remember selected section (Redux Persist)
-- ✅ Offline capability (caching, persistence, retry logic)
+- ✅ Offline capability (article caching, state persistence, automatic retry with cached data fallback)
 - ✅ Image caching (disk caching with expo-image)
 - ✅ Modern React (hooks, functional components)
 - ✅ Styled components with theme system
