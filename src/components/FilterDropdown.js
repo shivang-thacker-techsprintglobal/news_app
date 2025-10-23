@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     minHeight: moderateScale(44),
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: colors.divider,
   },
   inputText: {

@@ -21,11 +21,15 @@ A React Native mobile application for browsing New York Times top stories with o
 
 ```
 news_app/
+├── .env                        # Environment variables (API keys) - COMMITTED FOR TESTING
+├── .env.example                # Environment variables template
 ├── src/
 │   ├── api/                    # API layer
-│   │   ├── config.js          # API configuration and constants
+│   │   ├── config.js          # API configuration (reads from .env)
 │   │   ├── nytApi.js          # NYT API client with retry logic
 │   │   └── index.js
+│   ├── types/                  # TypeScript declarations
+│   │   └── env.d.ts           # Environment variables types
 │   ├── assets/                 # Static assets (images, fonts, etc.)
 │   ├── components/             # Reusable UI components
 │   │   ├── ArticleCard.js     # Article list item component
@@ -84,6 +88,7 @@ news_app/
 - **Redux Persist**: State persistence for offline capability
 - **React Navigation**: Navigation library
 - **AsyncStorage**: Local storage for persistence
+- **react-native-dotenv**: Environment variables management
 - **Jest**: Testing framework
 - **React Testing Library**: Component testing utilities
 
@@ -112,19 +117,40 @@ cd news_app
 npm install --legacy-peer-deps
 ```
 
-3. **Configure NYT API Key**
+3. **Environment Variables Setup**
 
-Get your API key from [NYT Developer Portal](https://developer.nytimes.com/get-started)
+**✅ Pre-configured for immediate use!**
 
-Edit `src/api/config.js` and replace `YOUR_API_KEY_HERE` with your actual API key:
+This project includes a `.env` file with a working NYT API key for client testing purposes.
 
-```javascript
-export const API_CONFIG = {
-  BASE_URL: "https://api.nytimes.com/svc/topstories/v2",
-  API_KEY: "your-api-key",
-  TIMEOUT: 10000,
-};
+**⚠️ IMPORTANT NOTE**: For this assignment, the `.env` file is intentionally committed to the repository for easy client testing. In production applications, **never commit API keys or `.env` files** to version control.
+
+**If you want to use your own API key:**
+
+1. Get your API key from [NYT Developer Portal](https://developer.nytimes.com/get-started)
+2. Update the `.env` file in the project root:
+
+```env
+# .env file
+NYT_API_KEY=your-api-key-here
+API_BASE_URL=https://api.nytimes.com/svc/topstories/v2
+API_TIMEOUT=10000
 ```
+
+3. Restart the Metro bundler for changes to take effect:
+
+```bash
+# Clear cache and restart
+npx expo start --clear
+```
+
+**Environment Variables Configuration:**
+
+- `NYT_API_KEY` - Your New York Times API key
+- `API_BASE_URL` - NYT Top Stories API base URL
+- `API_TIMEOUT` - API request timeout in milliseconds
+
+**📖 For detailed environment setup information, see [ENV_SETUP.md](./ENV_SETUP.md)**
 
 ### Running the App
 
@@ -331,14 +357,30 @@ The project follows standard JavaScript/React Native conventions:
 - `useArticles`: Manages article loading, caching, and filtering
 - `useNetworkStatus`: Monitors network connectivity (placeholder)
 
+## 🔐 Security Note
+
+**⚠️ About the .env file:**
+
+This project intentionally includes a `.env` file with an API key in the repository for easy client testing and evaluation purposes. This is **NOT a recommended practice** for production applications.
+
+**In production applications, you should:**
+
+- Add `.env` to your `.gitignore` file
+- Never commit API keys or sensitive credentials to version control
+- Use environment-specific variables or secret management services
+- Provide a `.env.example` file as a template without actual credentials
+
+This exception is made solely for assignment submission and client testing convenience.
+
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
 1. **API Key Error**
 
-   - Ensure you've added your NYT API key in `src/api/config.js`
-   - Verify the API key is valid on the NYT Developer Portal
+   - The project includes a pre-configured API key in the `.env` file
+   - If you're using your own key, ensure it's valid on the NYT Developer Portal
+   - After changing the `.env` file, restart Metro bundler: `npx expo start --clear`
 
 2. **Dependency Installation Issues**
 

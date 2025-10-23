@@ -6,15 +6,17 @@
  * @module api/config
  */
 
+import { NYT_API_KEY, API_BASE_URL, API_TIMEOUT } from "@env";
+
 /**
  * NYT API Configuration
- * IMPORTANT: Replace 'YOUR_API_KEY_HERE' with your actual NYT API key
+ * API key is loaded from .env file
  * Get your API key from: https://developer.nytimes.com/get-started
  */
 export const API_CONFIG = {
-  BASE_URL: "https://api.nytimes.com/svc/topstories/v2",
-  API_KEY: "5czJlN07Bv3vNgWqnK5RguDCT3KZoy0I", // Replace with your actual API key
-  TIMEOUT: 10000, // 10 seconds
+  BASE_URL: API_BASE_URL || "https://api.nytimes.com/svc/topstories/v2",
+  API_KEY: NYT_API_KEY || "YOUR_API_KEY_HERE",
+  TIMEOUT: parseInt(API_TIMEOUT || "10000", 10), // 10 seconds
 };
 
 /**
